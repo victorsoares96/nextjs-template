@@ -27,7 +27,7 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
+    "@babel/core": "7.19.6",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@storybook/addon-actions": "^6.4.20",
@@ -45,7 +45,7 @@
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
     "autoprefixer": "^10.4.4",
-    "babel-loader": "^8.2.4",
+    "babel-loader": "8.2.5",
     "commitizen": "^4.2.5",
     "commitizen-emoji": "^1.0.5",
     "cross-env": "^7.0.3",
