@@ -1,31 +1,38 @@
-name: Next Bulletproof Template CI
+name: CI
 on:
   pull_request:
-    branches: [main]
+    types: [opened, synchronize, reopened]
 jobs:
-  build-lint-test-lhci:
-    name: Build & Lint
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn
+        run: yarn --frozen-lockfile
 
       - name: Lint codebase
         run: yarn lint
 
       - name: Test codebase
-        run: yarn test
+        run: yarn test:coverage
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          # token: ${{secrets.CODECOV_TOKEN}} # not required for public repos
+          directory: coverage
+          fail_ci_if_error: true
 
       - name: Build Project
         run: yarn build
