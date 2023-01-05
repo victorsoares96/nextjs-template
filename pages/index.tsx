@@ -1,29 +1,19 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import PrimaryLayout from '../components/layouts/primary/PrimaryLayout';
-import Search from '../components/utility/search/Search';
-import { NextPageWithLayout } from './page';
+import { Repos } from "@features/repos";
+import React, { memo } from "react";
+import { injectIntl } from "react-intl";
+import { compose } from "redux";
 
-const Home: NextPageWithLayout = () => {
-  const { locale } = useRouter();
-
-  return (
-    <section className="flex flex-col items-center gap-y-5 mt-12 sm:mt-36">
-      <Image src="/Google.png" alt="Google Logo" width={272} height={92} priority />
-      <Search />
-      <p>
-        Google offered in:{' '}
-        <Link href="/" locale={locale === 'en' ? 'fr' : 'en'}>
-          <a className="underline text-blue-600"> Français</a>
-        </Link>
-      </p>
-    </section>
-  );
+export const ReposPage = ({ recommendations }) => {
+  return <Repos recommendations={recommendations} />;
 };
 
-export default Home;
+export async function getStaticProps() {
+  // const recommendations = await getReccomendations();
+  return {
+    props: {
+      // recommendations,
+    },
+  };
+}
 
-Home.getLayout = (page) => {
-  return <PrimaryLayout>{page}</PrimaryLayout>;
-};
+export default compose(injectIntl, memo)(ReposPage);
