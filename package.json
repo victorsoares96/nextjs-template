@@ -67,7 +67,7 @@
     "@types/lodash": "4.14.191",
     "@types/node": "18.11.18",
     "@types/prop-types": "15.7.5",
-    "@types/react": "18.0.0",
+    "@types/react": "18.0.26",
     "@types/styled-components": "5.1.24",
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
