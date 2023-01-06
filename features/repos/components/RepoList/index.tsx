@@ -23,7 +23,7 @@ const RepoList: React.FC<RepoListProps> = props => {
 
   const items: ResponseItem[] = get(reposData, "items", []);
   const totalCount: number = get(reposData, "totalCount", 0);
-  const BlockText = props => <T display="block" {...props} />;
+  const BlockText = (props: any) => <T display="block" {...props} />;
 
   return (
     <If condition={items.length !== 0 || loading}>

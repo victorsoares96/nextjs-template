@@ -2,13 +2,17 @@ import pickBy from "lodash-es/pickBy";
 import camelCase from "lodash-es/camelCase";
 import { screenBreakPoints } from "@themes/media";
 
-export const mapKeysDeep = (obj, fn) =>
+// @ts-ignore
+export const mapKeysDeep = (obj: Record<string, unknown>, fn: (value: string) => any) =>
   Array.isArray(obj)
-    ? obj.map(val => mapKeysDeep(val, fn))
+    ? // @ts-ignore
+      obj.map(val => mapKeysDeep(val, fn))
     : typeof obj === "object"
-    ? Object.keys(obj).reduce((acc, current) => {
+    ? Object.keys(obj as object).reduce((acc, current) => {
         const key = fn(current);
-        const val = obj[current];
+        // @ts-ignore
+        const val = (obj as object)[current];
+        // @ts-ignore
         acc[key] = val !== null && typeof val === "object" ? mapKeysDeep(val, fn) : val;
         return acc;
       }, {})
@@ -24,8 +28,8 @@ export const isLocal = () => {
   return false;
 };
 
-export function getQueryStringValue(keys) {
-  const queryString = {};
+export function getQueryStringValue(keys: string[]) {
+  const queryString: { [key: string]: string } = {};
   try {
     keys.forEach(key => {
       queryString[key] = decodeURIComponent(
@@ -78,4 +82,5 @@ export const convertObjectToCamelCase = <T>(obj: Record<string, unknown>): T => 
   return obj as T;
 };
 
-export const getDeviceType = device => (device || setDeviceType()).toUpperCase();
+export const getDeviceType = (device: "mobile" | "tablet" | "desktop") =>
+  (device || setDeviceType()).toUpperCase();

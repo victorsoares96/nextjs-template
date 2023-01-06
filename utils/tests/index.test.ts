@@ -27,9 +27,9 @@ describe("Tests for isLocal method", () => {
 });
 
 describe("Tests for mapKeysDeep method", () => {
-  let fn;
+  let fn: (keys: string) => string;
   beforeAll(() => {
-    fn = keys => camelCase(keys);
+    fn = (keys: string) => camelCase(keys);
   });
   it("should return something objet", () => {
     const obj = {
@@ -42,10 +42,12 @@ describe("Tests for mapKeysDeep method", () => {
 
   it("should operate array accordingly", () => {
     const arr = [{ locationone: "/route1", locationtwo: "/route2" }];
+    // @ts-ignore
     expect(mapKeysDeep(arr, fn)).toEqual(arr);
   });
 
   it("should return the passed value if its not an array or object", () => {
+    // @ts-ignore
     expect(mapKeysDeep(10, fn)).toEqual(10);
   });
 });

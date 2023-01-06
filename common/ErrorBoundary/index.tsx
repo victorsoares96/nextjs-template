@@ -11,16 +11,16 @@ class ErrorBoundary extends React.Component<
   { children: ReactElement },
   { hasError: boolean; error: Error | null }
 > {
-  constructor(props) {
+  constructor(props: { children: ReactElement }) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error) {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     console.error(error, errorInfo);
   }
 
