@@ -7084,6 +7084,11 @@ next-redux-wrapper@8.0.0:
   resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-8.0.0.tgz#588f2d89146c60c77d4a40c0af7e5282acfe4773"
   integrity sha512-zKRdpvDeqNXQr1j5DUWwsB2fz6XpHR32iy2qJGItTKLsbLB9GvtxDL9b4mFCfhDvnzy5dw97UqMjWDpFY8h0zA==
 
+next-router-mock@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.8.0.tgz#e4400b166941d2e8f2617c9b5f4091bbd916d943"
+  integrity sha512-aw/QnDFRqGDIkC3y4mCL5HQCNK94IzIfrEYy2c17WVp6Q4V5GUarFx751Sccf8fUPdkzD2/RsldyScvNZGA8lw==
+
 next@13.1.1:
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/next/-/next-13.1.1.tgz#42b825f650410649aff1017d203a088d77c80b5b"
