@@ -37,6 +37,7 @@
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
-    ]
+    ],
+    "@typescript-eslint/ban-ts-comment": "warn"
   }
 }

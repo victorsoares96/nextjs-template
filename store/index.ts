@@ -11,6 +11,7 @@ export const store = configureStore({
     [recommendationsApi.reducerPath]: recommendationsApi.reducer,
     [repoInfoApi.reducerPath]: repoInfoApi.reducer,
   },
+  // @ts-ignore
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(middlewares),
 });
 

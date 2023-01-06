@@ -22,7 +22,7 @@ describe("Test for IntlGlobalProvider", () => {
 });
 
 describe("Test for setIntl method", () => {
-  let intl;
+  let intl: IntlShape;
   beforeAll(() => {
     jest.spyOn(reactIntl, "createIntl").mockImplementation(() => {
       return { formatMessage: jest.fn() } as unknown as IntlShape;
@@ -43,7 +43,7 @@ describe("Test for setIntl method", () => {
 });
 
 describe("Test for translate method", () => {
-  let intl;
+  let intl: IntlShape;
   beforeAll(() => {
     jest.spyOn(reactIntl, "createIntl").mockImplementation(() => {
       return { formatMessage: jest.fn() } as unknown as IntlShape;

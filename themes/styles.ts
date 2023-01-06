@@ -87,7 +87,7 @@ const borderRadiusTop = (topRadius = 0) => css`
   border-top-right-radius: ${topRadius}px;
 `;
 
-const borderRadius = radius =>
+const borderRadius = (radius: number | string) =>
   css`
     border-radius: ${radius + `${typeof radius === `string` ? `;` : `px`}`};
   `;

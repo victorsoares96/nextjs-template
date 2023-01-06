@@ -9,6 +9,7 @@ import { compose } from "redux";
 import { fonts } from "@themes/index";
 import { useFetchRecommendationQuery } from "@features/repos/api/getRecommendations";
 import { useRouter } from "next/router";
+import { ReactComponentLike } from "prop-types";
 
 const { Search } = Input;
 
@@ -23,7 +24,7 @@ export const Repos: React.FC<RepoContainerProps> = ({ intl, maxwidth, recommenda
   const router = useRouter();
   const [repoName, setRepoName] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const onPageChange = pageNumber => {
+  const onPageChange = (pageNumber: number) => {
     setPage(pageNumber);
     router.push(`/?search=${repoName}&page=${pageNumber}`, undefined, {
       shallow: true,
@@ -104,4 +105,4 @@ Repos.defaultProps = {
   maxwidth: 500,
 };
 
-export default compose(injectIntl, memo)(Repos);
+export default compose(injectIntl, memo)(Repos) as ReactComponentLike;

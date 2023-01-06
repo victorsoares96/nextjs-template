@@ -8,7 +8,13 @@ import Head from "next/head";
 import React, { memo } from "react";
 import { useIntl } from "react-intl";
 
-const Meta = ({ title, description, useTranslation }) => {
+interface Props {
+  title?: string;
+  description?: string;
+  useTranslation?: boolean;
+}
+
+const Meta: React.FC<Props> = ({ title, description, useTranslation }) => {
   const intl = useIntl();
   return (
     <Head>

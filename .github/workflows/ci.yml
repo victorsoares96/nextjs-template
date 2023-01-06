@@ -22,7 +22,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Lint codebase
-        run: yarn lint
+        run: yarn lint:eslint:fix
 
       - name: Test codebase
         run: yarn test:coverage

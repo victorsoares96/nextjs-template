@@ -68,11 +68,15 @@ describe("Tests for dynamicFontSize method", () => {
       ${font()}
       ${media.greaterThan("tablet")`font-size: ${
         tabletDelta +
-        parseInt(font()[0].replace("font-size:", "").replace("rem;", "").replace(/\s+/g, ""))
+        parseInt(
+          (font()[0] as string).replace("font-size:", "").replace("rem;", "").replace(/\s+/g, "")
+        )
       }rem;`}
     ${media.greaterThan("desktop")`font-size: ${
         desktopDelta +
-        parseInt(font()[0].replace("font-size:", "").replace("rem;", "").replace(/\s+/g, ""))
+        parseInt(
+          (font()[0] as string).replace("font-size:", "").replace("rem;", "").replace(/\s+/g, "")
+        )
       }rem;`}
     `;
     expect(JSON.stringify(dynamicFontSize(font, desktopDelta, tabletDelta))).toEqual(
@@ -86,10 +90,16 @@ describe("Tests for dynamicFontSize method", () => {
     const expectedResult = css`
       ${font()}
       ${media.greaterThan("tablet")`font-size: ${
-        0 + parseInt(font()[0].replace("font-size:", "").replace("rem;", "").replace(/\s+/g, ""))
+        0 +
+        parseInt(
+          (font()[0] as string).replace("font-size:", "").replace("rem;", "").replace(/\s+/g, "")
+        )
       }rem;`}
     ${media.greaterThan("desktop")`font-size: ${
-        0 + parseInt(font()[0].replace("font-size:", "").replace("rem;", "").replace(/\s+/g, ""))
+        0 +
+        parseInt(
+          (font()[0] as string).replace("font-size:", "").replace("rem;", "").replace(/\s+/g, "")
+        )
       }rem;`}
     `;
     expect(JSON.stringify(dynamicFontSize(font))).toEqual(JSON.stringify(expectedResult));

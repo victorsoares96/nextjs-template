@@ -1,10 +1,14 @@
 import React from "react";
-import { useIntl } from "react-intl";
+import { IntlShape, useIntl } from "react-intl";
 
 // 'intl' service singleton reference
-let intl;
+let intl: IntlShape;
 
-const IntlGlobalProvider: React.FC = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const IntlGlobalProvider: React.FC<Props> = ({ children }) => {
   intl = useIntl(); // Keep the 'intl' service reference
   return <>{children}</>;
 };
@@ -12,8 +16,8 @@ const IntlGlobalProvider: React.FC = ({ children }) => {
 export default IntlGlobalProvider;
 
 // setter function to set intl value inside tests
-export const setIntl = intlValue => {
+export const setIntl = (intlValue: IntlShape) => {
   intl = intlValue;
 };
 
-export const translate = (id, values = {}) => intl.formatMessage({ id }, values);
+export const translate = (id: string, values = {}) => intl.formatMessage({ id }, values);
