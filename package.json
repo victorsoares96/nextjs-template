@@ -20,7 +20,7 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "5.3.6"
   },
   "config": {
     "commitizen": {
@@ -52,7 +52,7 @@
     "react-dom": "18.2.0",
     "react-intl": "6.2.5",
     "react-redux": "8.0.5",
-    "styled-components": "5.3.3",
+    "styled-components": "5.3.6",
     "styled-media-query": "2.1.2",
     "util": "0.12.5"
   },
@@ -68,7 +68,7 @@
     "@types/node": "18.11.18",
     "@types/prop-types": "15.7.5",
     "@types/react": "18.0.26",
-    "@types/styled-components": "5.1.24",
+    "@types/styled-components": "5.1.26",
     "@typescript-eslint/eslint-plugin": "5.48.0",
     "@typescript-eslint/parser": "5.48.0",
     "@welldone-software/why-did-you-render": "7.0.1",
