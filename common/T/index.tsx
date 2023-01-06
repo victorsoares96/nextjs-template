@@ -10,7 +10,7 @@ import { FormattedMessage } from "react-intl";
 import { If } from "@common";
 import { fonts } from "@themes";
 
-interface Props {
+export interface Props {
   type: keyof typeof fonts["style"];
   text?: string;
   id?: string;

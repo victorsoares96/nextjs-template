@@ -12,22 +12,22 @@ const FlexContainer = styled.div<{ orientation: "row" | "column" }>`
   flex-direction: ${props => props.orientation};
 `;
 
-interface Props<TListItem> {
-  of: TListItem[];
+export interface Props<T> {
+  of: T[];
   parentProps?: any;
   noParent?: boolean;
   ParentComponent?: React.FC;
-  renderItem: (item: TListItem, index: number) => React.ReactElement;
+  renderItem: (item: T, index: number) => React.ReactElement;
   orientation?: "row" | "column";
 }
 
-const For = ({
+const For = <T = unknown,>({
   of,
   parentProps,
   ParentComponent = FlexContainer,
   renderItem,
   noParent,
-}: Props<typeof of[0]>) => {
+}: Props<T>) => {
   const list = () => of.map((item, index) => ({ ...renderItem(item, index), key: index }));
   const children = () => (
     <ParentComponent {...parentProps} data-testid="for">
@@ -35,7 +35,7 @@ const For = ({
     </ParentComponent>
   );
   if (noParent) {
-    return (of || []).length ? list() : null;
+    return <React.Fragment>{(of || []).length ? list() : null}</React.Fragment>;
   }
   return (of || []).length ? children() : null;
 };

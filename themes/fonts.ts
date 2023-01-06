@@ -1,17 +1,25 @@
-import { css } from "styled-components";
+import { css, FlattenSimpleInterpolation } from "styled-components";
 import { media } from "@themes";
 
 // sizes
 
-export const dynamicFontSize = (font, desktopDelta = 0, tabletDelta = 0) => css`
+export const dynamicFontSize = (
+  font: () => FlattenSimpleInterpolation,
+  desktopDelta = 0,
+  tabletDelta = 0
+) => css`
   ${font()}
   ${media.greaterThan("tablet")`font-size: ${
     tabletDelta +
-    parseInt(font()[0].replace("font-size:", "").replace("rem;", "").replace(/\s+/g, ""))
+    parseInt(
+      (font()[0] as string).replace("font-size:", "").replace("rem;", "").replace(/\s+/g, "")
+    )
   }rem;`}
 ${media.greaterThan("desktop")`font-size: ${
     desktopDelta +
-    parseInt(font()[0].replace("font-size:", "").replace("rem;", "").replace(/\s+/g, ""))
+    parseInt(
+      (font()[0] as string).replace("font-size:", "").replace("rem;", "").replace(/\s+/g, "")
+    )
   }rem;`}
 `;
 const regular = () => css`
