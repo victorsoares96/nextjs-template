@@ -57,8 +57,8 @@
     "util": "0.12.4"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
-    "@babel/preset-env": "7.16.11",
+    "@babel/core": "7.20.12",
+    "@babel/preset-env": "7.20.2",
     "@testing-library/jest-dom": "5.15.0",
     "@testing-library/react": "13.0.0",
     "@testing-library/react-hooks": "8.0.1",
