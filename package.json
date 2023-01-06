@@ -54,7 +54,7 @@
     "react-redux": "8.0.0",
     "styled-components": "5.3.3",
     "styled-media-query": "2.1.2",
-    "util": "0.12.4"
+    "util": "0.12.5"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
