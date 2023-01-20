@@ -80,7 +80,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-plugin-transform-remove-console": "6.9.4",
     "babel-plugin-typescript-to-proptypes": "2.0.0",
-    "commitizen": "4.2.6",
+    "commitizen": "4.3.0",
     "commitizen-emoji": "1.0.5",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
