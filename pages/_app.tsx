@@ -5,10 +5,11 @@ import Head from "next/head";
 import { IntlProvider } from "react-intl";
 import { Provider as ReduxProvider } from "react-redux";
 import messages from "../translations/en.json";
-import { store } from "@store";
+import { wrapper } from "@store";
 import { StyleProvider } from "@ant-design/cssinjs";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, ...rest }: AppProps) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
     <StyleProvider hashPriority="high">
       <Head>
@@ -20,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <IntlProvider messages={messages} locale="en" defaultLocale="en">
         <ReduxProvider store={store}>
           <ErrorBoundary>
-            <Component {...pageProps} />
+            <Component {...props.pageProps} />
           </ErrorBoundary>
         </ReduxProvider>
       </IntlProvider>

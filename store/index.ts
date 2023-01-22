@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import repoReducer from "@slices/repos";
+import repoSlice from "@slices/repos";
 import { recommendationsApi } from "@features/repos/api/getRecommendations";
 import { repoInfoApi } from "@features/info/api/getRepoInfo";
 import middlewares from "./middlewares";
@@ -9,12 +9,13 @@ import { createWrapper } from "next-redux-wrapper";
 export const makeStore = () =>
   configureStore({
     reducer: {
-      repos: repoReducer,
+      [repoSlice.name]: repoSlice.reducer,
       [recommendationsApi.reducerPath]: recommendationsApi.reducer,
       [repoInfoApi.reducerPath]: repoInfoApi.reducer,
     },
     // @ts-ignore
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(middlewares),
+    devTools: process.env.NODE_ENV === "development",
   });
 
 export type AppStore = ReturnType<typeof makeStore>;

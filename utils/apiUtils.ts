@@ -57,6 +57,7 @@ export const githubApiService = createApi({
   }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
+      console.log(action);
       return action.payload[reducerPath];
     }
   },
