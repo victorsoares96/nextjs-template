@@ -11,6 +11,8 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async cont
   const repo = context.query.slug;
 
   if (typeof username === "string" && typeof repo === "string") {
+    // This automatically creates a store instance which can be used in getServerSideProps or getInitialProps
+    // Refer to https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering
     store.dispatch(
       repoInfoApi.endpoints.fetchRepoInfo.initiate({
         username,
