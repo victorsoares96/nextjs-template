@@ -6,10 +6,11 @@ import { IntlProvider } from "react-intl";
 import { Provider as ReduxProvider } from "react-redux";
 import messages from "../translations/en.json";
 import { store } from "@store";
+import { StyleProvider } from "@ant-design/cssinjs";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
+    <StyleProvider hashPriority="high">
       <Head>
         <meta
           name="viewport"
@@ -23,7 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           </ErrorBoundary>
         </ReduxProvider>
       </IntlProvider>
-    </>
+    </StyleProvider>
   );
 };
 

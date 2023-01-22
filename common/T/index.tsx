@@ -11,7 +11,7 @@ import { If } from "@common";
 import { fonts } from "@themes";
 
 export interface Props {
-  type: keyof typeof fonts["style"];
+  type: keyof (typeof fonts)["style"];
   text?: string;
   id?: string;
   values?: any;
@@ -26,7 +26,7 @@ const StyledText = styled.p<Partial<Props> & { font: ReturnType<typeof getFontSt
   }
 `;
 
-const getFontStyle = (type: keyof typeof fonts["style"]) =>
+const getFontStyle = (type: keyof (typeof fonts)["style"]) =>
   fonts.style[type] ? fonts.style[type] : () => null;
 
 export const T = ({ type, text, id, marginBottom, values, ...otherProps }: Props) => (
