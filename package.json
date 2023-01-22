@@ -2,9 +2,9 @@
   "name": "nextjs-template",
   "private": true,
   "version": "0.0.1",
-  "templateVersion": "1.2.0",
+  "templateVersion": "1.2.1",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development next dev",
+    "dev": "cross-env NODE_ENV=development next dev -p 3010",
     "build": "next build",
     "start": "cross-env NODE_ENV=production next start -p 3003",
     "lint": "next lint",
@@ -13,8 +13,8 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "jest --env=jsdom --watch",
     "test:coverage": "jest --env=jsdom --coverage",
-    "style:check": "prettier --check ./**/*.ts",
-    "style:fix": "prettier --write ./**/*.ts",
+    "style:check": "prettier --check ./**/*.{ts,tsx}",
+    "style:fix": "prettier --write ./**/*.{ts,tsx}",
     "type-check": "tsc -p tsconfig.json --noEmit --pretty",
     "lint:eslint:fix": "yarn eslint . --ext .ts,.tsx --fix",
     "analyze": "cross-env ANALYZE=true next build",
@@ -33,6 +33,7 @@
     }
   },
   "dependencies": {
+    "@ant-design/cssinjs": "1.5.6",
     "@next/bundle-analyzer": "13.1.2",
     "@reduxjs/toolkit": "1.9.1",
     "antd": "5.1.5",
