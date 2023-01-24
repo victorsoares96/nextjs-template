@@ -2,7 +2,7 @@
   "name": "nextjs-template",
   "private": true,
   "version": "0.0.1",
-  "templateVersion": "1.2.3",
+  "templateVersion": "1.2.4",
   "scripts": {
     "dev": "cross-env NODE_ENV=development next dev -p 3010",
     "dev:turbo": "cross-env NODE_ENV=development next dev --turbo --show-all -p 3010",
