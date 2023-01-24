@@ -1,6 +1,12 @@
-import { css } from "styled-components";
+import { css, FlattenSimpleInterpolation } from "styled-components";
 import colors from "../colors";
 import styles, { configureFlex } from "../styles";
+
+const normalize = (value: FlattenSimpleInterpolation) =>
+  value
+    .join("")
+    .replace(/^\s+|\s+$|\s+(?=\s)/g, "")
+    .trim();
 
 describe("Tests for styles", () => {
   let expectedResult;
@@ -10,7 +16,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       height: ${value}rem;
     `;
-    expect(height(value)).toEqual(expectedResult);
+    expect(normalize(height(value))).toEqual(normalize(expectedResult));
   });
 
   it("should return the z-index styling according to the value passed", () => {
@@ -18,7 +24,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       z-index: ${zIndexValue};
     `;
-    expect(styles.zIndex(zIndexValue)).toEqual(expectedResult);
+    expect(normalize(styles.zIndex(zIndexValue))).toEqual(normalize(expectedResult));
   });
 
   it("should return the textEllipsis styling according to the width passed", () => {
@@ -29,14 +35,14 @@ describe("Tests for styles", () => {
       width: ${width};
       text-overflow: ellipsis;
     `;
-    expect(styles.textEllipsis(width)).toEqual(expectedResult);
+    expect(normalize(styles.textEllipsis(width))).toEqual(normalize(expectedResult));
   });
 
   it("should return primaryBackgroundColor styling", () => {
     expectedResult = css`
       background-color: ${colors.primary};
     `;
-    expect(styles.primaryBackgroundColor()).toEqual(expectedResult);
+    expect(normalize(styles.primaryBackgroundColor())).toEqual(normalize(expectedResult));
   });
 
   it("should return the boxShadow stylings according to values passed", () => {
@@ -48,7 +54,9 @@ describe("Tests for styles", () => {
     expectedResult = css`
       box-shadow: ${hOffset}px ${vOffset}px ${blur}px ${spread}px ${color};
     `;
-    expect(styles.boxShadow(hOffset, vOffset, blur, spread, color)).toEqual(expectedResult);
+    expect(normalize(styles.boxShadow(hOffset, vOffset, blur, spread, color))).toEqual(
+      normalize(expectedResult)
+    );
   });
 
   it("should return the borderRaduis stylings according to the radius value and types passed", () => {
@@ -56,13 +64,13 @@ describe("Tests for styles", () => {
     let expectedResult = css`
       border-radius: ${radius + `${typeof radius === `string` ? `;` : `px`}`};
     `;
-    expect(styles.borderRadius(radius)).toEqual(expectedResult);
+    expect(normalize(styles.borderRadius(radius))).toEqual(normalize(expectedResult));
 
     radius = "12px";
     expectedResult = css`
       border-radius: ${radius + `${typeof radius === `string` ? `;` : `px`}`};
     `;
-    expect(styles.borderRadius(radius)).toEqual(expectedResult);
+    expect(normalize(styles.borderRadius(radius))).toEqual(normalize(expectedResult));
   });
 
   it("should return the borderWithRadius stylings according to values passed", () => {
@@ -74,7 +82,9 @@ describe("Tests for styles", () => {
       border: ${width}px ${type} ${color};
       ${styles.borderRadius(radius)}
     `;
-    expect(styles.borderWithRadius(width, type, color, radius)).toEqual(expectedResult);
+    expect(normalize(styles.borderWithRadius(width, type, color, radius))).toEqual(
+      normalize(expectedResult)
+    );
   });
 
   it("should return borderRadiusBottom stylings according to the bottomRadius value passed", () => {
@@ -83,7 +93,7 @@ describe("Tests for styles", () => {
       border-bottom-left-radius: ${bottomRadius}px;
       border-bottom-right-radius: ${bottomRadius}px;
     `;
-    expect(styles.borderRadiusBottom(bottomRadius)).toEqual(expectedResult);
+    expect(normalize(styles.borderRadiusBottom(bottomRadius))).toEqual(normalize(expectedResult));
   });
 
   it("should return borderRadiusTop stylings according to the topRadius value passed", () => {
@@ -92,7 +102,7 @@ describe("Tests for styles", () => {
       border-top-left-radius: ${topRadius}px;
       border-top-right-radius: ${topRadius}px;
     `;
-    expect(styles.borderRadiusTop(topRadius)).toEqual(expectedResult);
+    expect(normalize(styles.borderRadiusTop(topRadius))).toEqual(normalize(expectedResult));
   });
 
   it("should return the margin-top Styling according to the top distance value provided", () => {
@@ -100,7 +110,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-top: ${marginTop}rem;
     `;
-    expect(styles.margin.top(marginTop)).toEqual(expectedResult);
+    expect(normalize(styles.margin.top(marginTop))).toEqual(normalize(expectedResult));
   });
 
   it("should return the margin-bottom Styling according to the bottom distance value provided", () => {
@@ -108,7 +118,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-bottom: ${marginBottom}rem;
     `;
-    expect(styles.margin.bottom(marginBottom)).toEqual(expectedResult);
+    expect(normalize(styles.margin.bottom(marginBottom))).toEqual(normalize(expectedResult));
   });
 
   it("should return the margin-left Styling according to the left distance value provided", () => {
@@ -116,7 +126,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-left: ${marginLeft}rem;
     `;
-    expect(styles.margin.left(marginLeft)).toEqual(expectedResult);
+    expect(normalize(styles.margin.left(marginLeft))).toEqual(normalize(expectedResult));
   });
 
   it("should return the margin-left Styling according to the left distance value provided", () => {
@@ -124,7 +134,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-right: ${marginRight}rem;
     `;
-    expect(styles.margin.right(marginRight)).toEqual(expectedResult);
+    expect(normalize(styles.margin.right(marginRight))).toEqual(normalize(expectedResult));
   });
 
   it("should return the vertical margin styilngs according to the verticalMargin value passed", () => {
@@ -133,7 +143,7 @@ describe("Tests for styles", () => {
       margin-top: ${verticalMargin}rem;
       margin-bottom: ${verticalMargin}rem;
     `;
-    expect(styles.margin.vertical(verticalMargin)).toEqual(expectedResult);
+    expect(normalize(styles.margin.vertical(verticalMargin))).toEqual(normalize(expectedResult));
   });
 
   it("should return the horizontal margin styilngs according to the horizontalMargin value passed", () => {
@@ -142,22 +152,26 @@ describe("Tests for styles", () => {
       margin-left: ${horizontalMargin}rem;
       margin-right: ${horizontalMargin}rem;
     `;
-    expect(styles.margin.horizontal(horizontalMargin)).toEqual(expectedResult);
+    expect(normalize(styles.margin.horizontal(horizontalMargin))).toEqual(
+      normalize(expectedResult)
+    );
   });
 
   it("should return the row stylings", () => {
-    expect(styles.flexConfig.row()).toEqual(css`
-      display: flex;
-      flex: 1;
-      flex-direction: row;
-    `);
+    expect(normalize(styles.flexConfig.row())).toEqual(
+      normalize(css`
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+      `)
+    );
   });
 
   it("should return the rowCenter stylings", () => {
     expectedResult = css`
       ${configureFlex("row", "center", "center", "center")};
     `;
-    expect(styles.flexConfig.rowCenter()).toEqual(expectedResult);
+    expect(normalize(styles.flexConfig.rowCenter())).toEqual(normalize(expectedResult));
   });
 
   it("should return the stylings of column", () => {
@@ -166,14 +180,14 @@ describe("Tests for styles", () => {
       flex: 1;
       flex-direction: column;
     `;
-    expect(styles.flexConfig.column()).toEqual(expectedResult);
+    expect(normalize(styles.flexConfig.column())).toEqual(normalize(expectedResult));
   });
 
   it("should return the unequalColumns stylings", () => {
     expectedResult = css`
       ${configureFlex("column", "", "", "", 0, 0, 0)};
     `;
-    expect(styles.flexConfig.unequalColumns()).toEqual(expectedResult);
+    expect(normalize(styles.flexConfig.unequalColumns())).toEqual(normalize(expectedResult));
   });
 
   it("should return default height stylings", () => {
@@ -181,7 +195,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       height: ${height}rem;
     `;
-    expect(styles.height()).toEqual(expectedResult);
+    expect(normalize(styles.height())).toEqual(normalize(expectedResult));
   });
 
   it("should return default marginTop stylings", () => {
@@ -189,7 +203,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-top: ${marginTop}rem;
     `;
-    expect(styles.margin.top()).toEqual(expectedResult);
+    expect(normalize(styles.margin.top())).toEqual(normalize(expectedResult));
   });
 
   it("should return default marginLeft stylings", () => {
@@ -197,7 +211,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-left: ${marginLeft}rem;
     `;
-    expect(styles.margin.left()).toEqual(expectedResult);
+    expect(normalize(styles.margin.left())).toEqual(normalize(expectedResult));
   });
 
   it("should return default marginRight stylings", () => {
@@ -205,7 +219,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-right: ${marginRight}rem;
     `;
-    expect(styles.margin.right()).toEqual(expectedResult);
+    expect(normalize(styles.margin.right())).toEqual(normalize(expectedResult));
   });
 
   it("should return default marginBottom stylings", () => {
@@ -213,7 +227,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       margin-bottom: ${marginBottom}rem;
     `;
-    expect(styles.margin.bottom()).toEqual(expectedResult);
+    expect(normalize(styles.margin.bottom())).toEqual(normalize(expectedResult));
   });
 
   it("should return default verticalMargin stylings", () => {
@@ -222,7 +236,7 @@ describe("Tests for styles", () => {
       margin-top: ${verticalMargin}rem;
       margin-bottom: ${verticalMargin}rem;
     `;
-    expect(styles.margin.vertical()).toEqual(expectedResult);
+    expect(normalize(styles.margin.vertical())).toEqual(normalize(expectedResult));
   });
 
   it("should return default horizontalMargin stylings", () => {
@@ -231,7 +245,7 @@ describe("Tests for styles", () => {
       margin-left: ${horizontalMargin}rem;
       margin-right: ${horizontalMargin}rem;
     `;
-    expect(styles.margin.horizontal()).toEqual(expectedResult);
+    expect(normalize(styles.margin.horizontal())).toEqual(normalize(expectedResult));
   });
 
   it("should return default borderRadiusBottom stylings", () => {
@@ -240,7 +254,7 @@ describe("Tests for styles", () => {
       border-bottom-left-radius: ${bottomRadius}px;
       border-bottom-right-radius: ${bottomRadius}px;
     `;
-    expect(styles.borderRadiusBottom()).toEqual(expectedResult);
+    expect(normalize(styles.borderRadiusBottom())).toEqual(normalize(expectedResult));
   });
 
   it("should return default borderRadiusTop stylings", () => {
@@ -249,7 +263,7 @@ describe("Tests for styles", () => {
       border-top-left-radius: ${topRadius}px;
       border-top-right-radius: ${topRadius}px;
     `;
-    expect(styles.borderRadiusTop()).toEqual(expectedResult);
+    expect(normalize(styles.borderRadiusTop())).toEqual(normalize(expectedResult));
   });
 
   it("should return default borderWithRadius stylings", () => {
@@ -262,7 +276,7 @@ describe("Tests for styles", () => {
       border: ${width}px ${type} ${color};
       ${styles.borderRadius(radius)}
     `;
-    expect(styles.borderWithRadius()).toEqual(expectedResult);
+    expect(normalize(styles.borderWithRadius())).toEqual(normalize(expectedResult));
   });
 
   it("should return default boxShadow stylings", () => {
@@ -275,7 +289,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       box-shadow: ${hOffset}px ${vOffset}px ${blur}px ${spread}px ${color};
     `;
-    expect(styles.boxShadow()).toEqual(expectedResult);
+    expect(normalize(styles.boxShadow())).toEqual(normalize(expectedResult));
   });
 
   it("should return default z-index stylings", () => {
@@ -283,7 +297,7 @@ describe("Tests for styles", () => {
     expectedResult = css`
       z-index: ${z};
     `;
-    expect(styles.zIndex()).toEqual(expectedResult);
+    expect(normalize(styles.zIndex())).toEqual(normalize(expectedResult));
   });
 
   it("should return default textEllipsis stylings", () => {
@@ -294,7 +308,7 @@ describe("Tests for styles", () => {
       width: ${width};
       text-overflow: ellipsis;
     `;
-    expect(styles.textEllipsis()).toEqual(expectedResult);
+    expect(normalize(styles.textEllipsis())).toEqual(normalize(expectedResult));
   });
 });
 
@@ -327,16 +341,18 @@ describe("Tests for ConfigureFlex method", () => {
       flex-shrink: ${flexShrink};
     `;
     expect(
-      configureFlex(
-        direction,
-        justifyContent,
-        alignItems,
-        alignContent,
-        flexBasis,
-        flexGrow,
-        flexShrink
+      normalize(
+        configureFlex(
+          direction,
+          justifyContent,
+          alignItems,
+          alignContent,
+          flexBasis,
+          flexGrow,
+          flexShrink
+        )
       )
-    ).toEqual(expectedResult);
+    ).toEqual(normalize(expectedResult));
   });
   it("should return the default css styling accordingly", () => {
     direction = "row";
@@ -356,6 +372,6 @@ describe("Tests for ConfigureFlex method", () => {
       flex-grow: ${flexGrow};
       flex-shrink: ${flexShrink};
     `;
-    expect(JSON.stringify(configureFlex())).toEqual(JSON.stringify(expectedResult));
+    expect(normalize(configureFlex())).toEqual(normalize(expectedResult));
   });
 });

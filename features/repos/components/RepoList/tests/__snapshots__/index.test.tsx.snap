@@ -4,7 +4,7 @@ exports[`<RepoList /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered styled__CustomCard-sc-15gkald-1 hblPBv css-dev-only-do-not-override-1i9hnpv"
+      class="ant-card ant-card-bordered styled__CustomCard-sc-c8c48a6e-1 dWVQOm css-dev-only-do-not-override-1i9hnpv"
       data-testid="repo-list"
     >
       <div

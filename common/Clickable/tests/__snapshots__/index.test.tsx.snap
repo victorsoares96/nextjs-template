@@ -4,11 +4,11 @@ exports[`<Clickable /> component tests should render and match the snapshot 1`] 
 <body>
   <div>
     <div
-      class="Clickable__StyledClickable-sc-wshbsq-0 kfeOie"
+      class="Clickable__StyledClickable-sc-3d1632e7-0 ipseMj"
       data-testid="clickable"
     >
       <p
-        class="T__StyledText-sc-apdcd0-0 fDtdbl"
+        class="T__StyledText-sc-5635c3d5-0 dqiFkr"
         data-testid="t"
       >
         Repository List

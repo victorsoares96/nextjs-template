@@ -8,6 +8,8 @@ import messages from "../translations/en.json";
 import { wrapper } from "@store";
 import { StyleProvider } from "@ant-design/cssinjs";
 
+import "../scripts/wdyr";
+
 const MyApp = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   return (

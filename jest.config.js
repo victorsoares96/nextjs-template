@@ -1,4 +1,11 @@
-module.exports = {
+const nextJest = require('next/jest');
+
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
+
+module.exports = createJestConfig({
   preset: "ts-jest",
   testEnvironment: "jsdom",
   collectCoverageFrom: [
@@ -32,6 +39,7 @@ module.exports = {
     "@constants(.*)": "<rootDir>/constants",
     "services(.*)": "<rootDir>/services",
     "^@features(.*)": "<rootDir>/features/$1",
+    "^@containers(.*)": "<rootDir>/containers/$1",
     "^@hooks(.*)": "<rootDir>/hooks/$1",
     "^@shared(.*)": "<rootDir>/features/sharedComponents/$1",
     "^@themes(.*)": "<rootDir>/themes/$1",
@@ -53,7 +61,7 @@ module.exports = {
     "node_modules/lodash-es/.+\\.(j|t)sx?$": "ts-jest",
     // Use babel-jest to transpile tests with the next/babel preset
     // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
-    "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
+    // "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
   },
   transformIgnorePatterns: [
     "/node_modules/",
@@ -66,4 +74,4 @@ module.exports = {
       tsconfig: "tsconfig.json",
     },
   },
-};
+});
