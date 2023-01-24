@@ -10,7 +10,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' && { exclude: ["error", "warn"] },
     styledComponents: {
       ssr: true,
-      cssProp: process.env.NODE_ENV !== 'production'
+      cssProp: process.env.NODE_ENV !== 'production',
+      displayName: process.env.NODE_ENV !== 'production',
     }
   },
   webpack(config, { dev, isServer }) {
