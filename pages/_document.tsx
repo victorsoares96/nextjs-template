@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
+import { ServerStyleSheet } from "styled-components";
 
 const APP_NAME = "nextjs-template";
 const APP_DESCRIPTION = "nextjs template based on bulletproof architecture written in typescript";
@@ -7,28 +8,34 @@ const APP_DESCRIPTION = "nextjs template based on bulletproof architecture writt
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const cache = createCache();
+    const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: App => props =>
-          (
-            <StyleProvider cache={cache}>
-              <App {...props} />
-            </StyleProvider>
-          ),
-      });
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props =>
+            sheet.collectStyles(
+              <StyleProvider cache={cache}>
+                <App {...props} />
+              </StyleProvider>
+            ),
+        });
 
-    const initialProps = await Document.getInitialProps(ctx);
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          <style data-test="extract" dangerouslySetInnerHTML={{ __html: extractStyle(cache) }} />
-        </>
-      ),
-    };
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+            <style data-test="extract" dangerouslySetInnerHTML={{ __html: extractStyle(cache) }} />
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
