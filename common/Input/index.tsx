@@ -1,4 +1,4 @@
-import * as styled from "./styles";
+import * as Styled from "./styles";
 
 type Props = {
   label: string;
@@ -9,7 +9,7 @@ type Props = {
   width: string;
   disabled?: boolean;
   value: string | number | undefined;
-  onChange?: (e: any) => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   error?: string;
 };
 
@@ -26,7 +26,7 @@ export const Input = ({
   error,
 }: Props) => {
   return (
-    <styled.Wrapper>
+    <Styled.Wrapper>
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
@@ -39,6 +39,6 @@ export const Input = ({
         onChange={onChange}
       ></input>
       <small>{error}</small>
-    </styled.Wrapper>
+    </Styled.Wrapper>
   );
 };

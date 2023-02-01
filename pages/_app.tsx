@@ -9,7 +9,6 @@ import { wrapper } from "@store";
 import { StyleProvider } from "@ant-design/cssinjs";
 
 import "../scripts/wdyr";
-import Login from "@app/containers/Login";
 
 const MyApp = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
@@ -23,12 +22,9 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
       </Head>
       <IntlProvider messages={messages} locale="en" defaultLocale="en">
         <ReduxProvider store={store}>
-          <Login />
-          {/*
           <ErrorBoundary>
             <Component {...props.pageProps} />
           </ErrorBoundary>
-          */}
         </ReduxProvider>
       </IntlProvider>
     </StyleProvider>

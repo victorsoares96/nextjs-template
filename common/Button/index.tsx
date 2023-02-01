@@ -4,7 +4,7 @@ type Props = {
   title: string;
   type?: "button" | "submit" | "reset";
   style: "pattern";
-  onClick?: (e: any) => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
 export const Button = ({ title, type = "button", style, onClick }: Props) => {
